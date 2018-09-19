@@ -4,6 +4,49 @@
 [![Join the chat at https://gitter.im/anshooarora/extentreports](https://badges.gitter.im/anshooarora/extentreports.svg)](https://gitter.im/anshooarora/extentreports?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/anshooarora/extentreports-java.svg)](https://travis-ci.org/anshooarora/extentreports-java) [![Maven Central](https://img.shields.io/maven-central/v/com.aventstack/extentreports.svg?maxAge=300)](http://search.maven.org/#search|ga|1|g:"com.aventstack")
 
+![](http://extentreports.com/wp-content/uploads/2018/08/logomark.png)[xtentReports](http://extentreports.com/community/)
+
+**Maven**
+```xml
+<!-- pom.xml -->
+<dependency>
+    <groupId>com.aventstack</groupId>
+    <artifactId>extentreports</artifactId>
+    <version>3.1.5</version>
+</dependency>
+```
+
+#### [Initializing Report](http://extentreports.com/docs/versions/3/java/#initialize-report)
+It is required to start and attach reporters to `ExtentReports` class in order to successfully generate test information. Failure to start reporters or attaching them will result in `IllegalStateException` when creating tests or flushing out run content to the report.
+
+```java
+// initialize the HtmlReporter
+ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter("extent.html");
+
+// initialize ExtentXReporter (deprecated)
+ExtentXReporter extentxReporter = new ExtentXReporter("mongodb-host", mongodb-port);
+
+// initialize KlovReporter
+KlovReporter klov = new KlovReporter();
+
+// initialize EmailReporter (pro-only)
+ExtentEmailReporter emailReporter = new ExtentEmailReporter("email.html");
+
+// intiailize the realtime logger (pro-only)
+ExtentLogger logger = new ExtentLogger();
+
+// initialize ExtentReports and attach the HtmlReporter
+ExtentReports extent = new ExtentReports();
+
+// attach only HtmlReporter
+extent.attachReporter(htmlReporter);
+
+// attach all reporters
+extent.attachReporter(htmlReporter, klovReporter, emailReporter, logger);
+```
+
+----
+
 This version is Java8 only. Version 2 and lower are no longer supported.
 
 [Klov](https://github.com/anshooarora/klov) report server is supported with version 3.1.0+.
